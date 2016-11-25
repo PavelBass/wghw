@@ -8,5 +8,7 @@ setup(
     author='Pavel Bass',
     install_requires=[
         'Django==1.10.3',
+        'celery==4.0.0',
+        'redis==2.10.5',
     ],
 )

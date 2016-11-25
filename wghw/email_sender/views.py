@@ -1,7 +1,8 @@
 from django.views.generic import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from email_sender.forms import EmailSendForm
+from wghw.email_sender.forms import EmailSendForm
+from wghw.email_sender.tasks import send_email
 
 
 class EmailSendView(LoginRequiredMixin, FormView):
@@ -10,8 +11,8 @@ class EmailSendView(LoginRequiredMixin, FormView):
 
     template_name = 'email_send.html'
     form_class = EmailSendForm
-    success_url = 'ok'
+    success_url = 'ok/'
 
     def form_valid(self, form):
-        #form.send_email()
+        send_email.apply_async(kwargs=form.cleaned_data, eta=form.calculate_datetime())
         return super(EmailSendView, self).form_valid(form)

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
-from email_sender.views import EmailSendView
+from wghw.email_sender.views import EmailSendView
 
 
 urlpatterns = [
