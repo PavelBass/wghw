@@ -14,5 +14,9 @@ class EmailSendView(LoginRequiredMixin, FormView):
     success_url = 'ok/'
 
     def form_valid(self, form):
-        send_email.apply_async(kwargs=form.cleaned_data, eta=form.calculate_datetime())
+        send_email.apply_async(
+            args=(self.request.user.username,),
+            kwargs=form.cleaned_data,
+            eta=form.calculate_datetime(),
+        )
         return super(EmailSendView, self).form_valid(form)
