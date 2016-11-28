@@ -41,6 +41,9 @@ Email сообщения отправляются в консоль, время 
 2. `pip install -e .` - установка проекта
 3. `wghw/manage.py collectstatic` - собрка статики
 4. `wghw/manage.py migrate` - применение миграций
-5. `wghw/manage.py loaddata demo` - (необязательно) Создается пользователь с логином `test` и паролем `asdasd123`, и несколько отправленных и неотправленных сообщений от его имени.
-6. `wghw/manage.py runserver` - запуск WEB сервера
-7. `celery -A wghw worker -l info` - запуск Celery
+5. `wghw/manage.py runserver` - запуск WEB сервера
+6. `celery -A wghw worker -l info` - запуск Celery
+
+Дополнитльно:
+* `wghw/manage.py loaddata demo` - (необязательно) Создается пользователь с логином `test` и паролем `asdasd123`, несколько отправленных и неотправленных сообщений от его имени.
+* `wghw/manage.py test` - запуск тестов
