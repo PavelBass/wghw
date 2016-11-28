@@ -1,20 +1,17 @@
 from django.http import JsonResponse
 from django.views.generic import View
-from django.contrib.auth.models import User
 
-from wghw.celery_application import app
+from wghw.email_sender.models import Message, User
 
 
 class UsersJSONView(View):
-    def get(self, request, *args, **kwargs):
-        users = User.objects.values('username', 'date_joined')
-        result = {'users': list(users)}
+    def get(self, *args, **kwargs):
+        result = {'users': User.get_users_list()}
         return JsonResponse(result)
 
 
-class TasksJSONView(View):
+class MessagesJSONView(View):
     def get(self, request, *argd, **kwargs):
-        inspect = app.control.inspect()
-        tasks = []
-        result = {'tasks': tasks, 'scheduled': repr(inspect.scheduled()), 'active': repr(inspect.active())}
+        tasks = Message.get_messages_list()
+        result = {'tasks': list(tasks)}
         return JsonResponse(result)

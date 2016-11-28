@@ -2,11 +2,16 @@ import datetime
 
 from django import forms
 
+from wghw.email_sender.models import Message
 
-class EmailSendForm(forms.Form):
-    email = forms.EmailField()
-    time = forms.TimeField(widget=forms.TimeInput)
-    message = forms.CharField(widget=forms.Textarea)
+
+class EmailSendForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['email_to', 'time', 'text']
+        widgets = {
+            'text': forms.Textarea(),
+        }
 
     def calculate_datetime(self):
         today = datetime.date.today()

@@ -1,5 +1,5 @@
-from django.views.generic import FormView
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import FormView
 
 
 class RegistrationView(FormView):

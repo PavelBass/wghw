@@ -1,6 +1,5 @@
 {% extends "main.html" %}
 {% block content %}
-    <p>Время: </p>
     <p>Пользователь: <b>{{ request.user }}</b></p>
     <form method="POST">
     {{ form.as_p }}{% csrf_token %}
