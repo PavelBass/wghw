@@ -31,8 +31,10 @@ class Message(models.Model):
         self.save()
 
     @classmethod
-    def get_messages_list(cls):
+    def get_messages_list(cls, status=None):
         messages = cls.objects.values('text', 'is_sended')
+        if status == 'waiting':
+            messages = messages.filter(is_sended=False)
         messages = [{
                         'text': message['text'],
                         'status': message['is_sended'] and 'Отправлено' or 'Ожидает'

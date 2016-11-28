@@ -1,0 +1,1 @@
+[{"model": "email_sender.message", "pk": 1, "fields": {"user": 1, "email_to": "statgg@gmail.com", "text": "asdasd\r\nas", "time": "23:15:00", "is_sended": false}}, {"model": "email_sender.message", "pk": 2, "fields": {"user": 1, "email_to": "statgg@gmail.com", "text": "asdasd\r\nas", "time": "23:20:00", "is_sended": true}}]

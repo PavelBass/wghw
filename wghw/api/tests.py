@@ -45,8 +45,18 @@ class MessageAPITestCase(TestCase):
         self.assertEqual(answer[0]['status'], 'Ожидает')
 
     def test_message_status(self):
-        self.message.set_sended()
-        response = self.client.get(reverse('api:messages'))
+        response = self.client.get(reverse('api:messages'), data={'status': 'waiting'})
+        len_before_send = len(response.json()['messages'])
 
+        self.message.set_sended()
+
+        response = self.client.get(reverse('api:messages'), data={'status': 'waiting'})
+        len_after_send = len(response.json()['messages'])
+
+        self.assertNotEqual(len_before_send, len_after_send)
+
+        response = self.client.get(reverse('api:messages'))
         answer = response.json().get('messages')
         self.assertEqual(answer[0]['status'], 'Отправлено')
+
+        self.assertNotEqual(len_before_send, len_after_send)
