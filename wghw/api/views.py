@@ -13,5 +13,5 @@ class UsersJSONView(View):
 class MessagesJSONView(View):
     def get(self, request, *argd, **kwargs):
         tasks = Message.get_messages_list()
-        result = {'tasks': list(tasks)}
+        result = {'messages': list(tasks)}
         return JsonResponse(result)

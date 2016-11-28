@@ -4,6 +4,6 @@ from django.views.generic import TemplateView
 from wghw.email_sender.views import EmailSendView
 
 urlpatterns = [
-    url(r'^$', EmailSendView.as_view()),
-    url(r'^ok/$', TemplateView.as_view(template_name='email_sended.html')),
+    url(r'^$', EmailSendView.as_view(), name='send'),
+    url(r'^ok/$', TemplateView.as_view(template_name='email_sended.html'), name='sended'),
 ]

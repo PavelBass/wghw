@@ -8,7 +8,7 @@ urlpatterns = [
 
     # auth
     url('^', include('django.contrib.auth.urls')),
-    url(r'^registration/$', RegistrationView.as_view()),
+    url(r'^registration/$', RegistrationView.as_view(), name='registration'),
 
     # email send
     url(r'^email_send/', include('email_sender.urls', namespace='email_send')),

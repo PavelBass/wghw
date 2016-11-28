@@ -11,7 +11,7 @@ class EmailSendView(LoginRequiredMixin, FormView):
 
     template_name = 'email_send.html'
     form_class = EmailSendForm
-    success_url = 'ok/'
+    success_url = '/email_send/ok/'
 
     def form_valid(self, form):
         new_message = form.save(commit=False)
